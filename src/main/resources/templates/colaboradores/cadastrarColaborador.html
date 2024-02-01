@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+                   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Colaboradores</title>
+</head>
+<body>
+    <h1>Colaboradores</h1>
+    <a href="/squads">Voltar para Lista de Squads</a><p></p>
+
+    <div>
+        <form action="@{/cadastrarColaborador}" th:action="@{/cadastrarColaborador}" th:object="${colaborador}" method="post">
+
+            Nome: <input type="text" th:field="*{nome}" />
+            <p></p>
+            Data de Nascimento: <input type="date" th:field="*{dataNascimento}" />
+            <p></p>
+            Email: <input type="text" th:field="*{email}" />
+            <p></p>
+            <th:block th:if ="${squad != null}">
+                Squad: <input type="text" th:value="${squad.nome}" readonly="readonly" />
+            </th:block>
+            <button type="submit">Cadastrar</button>    
+        </form>
+    </div>
+</body>
+</html>

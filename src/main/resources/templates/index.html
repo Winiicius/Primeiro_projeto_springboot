@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+                   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akross Squads</title>
+</head>
+<body>
+    <h1>Akross</h1>
+    <div>
+        <a href="/cadastrarSquad">Cadastrar Squad</a>
+        <p></p>
+        <a href="/cadastrarColaborador">Cadastrar Colaborador</a>
+        <p></p>
+        <a href="/listarColaboradores">Ver Todos os Colaboradores</a>
+    </body>
+    </div>
+    <hr>
+    <div>
+        <table>
+            <h3>Lista de Squads</h3>
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Empresa</td>
+                    <td>Colaboradores</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="squad : ${squads}">
+                    <td><span th:text="${squad.nome}"></span></td>
+                    <td><span th:text="${squad.descricao}"></span></td>
+                    <td><span th:text="${squad.empresa.nome}"></span></td>
+                    <td><a th:href="@{/listarColaboradores(squadId=${squad.id})}"><span>Ver Colaboradores</span></a></td> <!-- 1aqui eu quero um botão que leva pra uma tela que mostra os colaboradores do respectivo squad -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

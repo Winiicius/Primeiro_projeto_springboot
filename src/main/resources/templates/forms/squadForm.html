@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+                   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastrar Squads</title>
+    </head>
+    <body>
+        <h1>Cadastro de Squad</h1>
+        <a href="/squads">Voltar para Lista de Squads</a>
+        <p><hr></p>
+        
+        <div class="container formEvento">
+        
+            <form action="@{/cadastrarSquad}" th:action="@{/cadastrarSquad}" th:object="${squad}" method="post">
+                Nome: <input type="text" th:field="*{nome}" />
+                <p></p>
+                Descrição: <input type="text" th:field="*{descricao}" />
+                <p></p>
+                Empresa: <input type="text" th:value="${squad.empresa.nome}" readonly="readonly" />
+                <p></p>
+                <button type="submit">Salvar</button>    
+            </form>
+        </div>
+    </body>
+</html>

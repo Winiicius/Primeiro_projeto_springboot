@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+                   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Colaboradores</h1>
+    <a href="/squads">Voltar para Lista de Squads</a><p></p>
+
+    <th:block th:if="${squad != null}">
+        <h2 th:text="'Colaboradores do Squad: ' + ${squad.nome}"></h2>
+    
+        <!-- Adiciona um botão para cadastrar um colaborador neste Squad -->
+        
+        <a th:href="@{/cadastrarColaborador(squadId=${squad.id})}">
+            <button type="button">Cadastrar Colaborador neste Squad</button>
+        </a>
+    </th:block>
+
+
+    </div>
+        <table>
+            <h3>Lista de Colaboradores</h3>
+            <thead>
+                <tr th:if="${colaboradores != null and colaboradores.size() > 0}">
+                    <th>Nome</th>
+                    <th>Data Nascimento</th>
+                    <th>Email</th>
+                    <th>Squad</th>
+                </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${colaboradores != null and colaboradores.size() > 0}" th:each="colaborador : ${colaboradores}">
+                <td><span th:text="${colaborador.nome}"></span></td>
+                <td><span th:text="${colaborador.dataNascimento}"></span></td>
+                <td><span th:text="${colaborador.email}"></span></td>
+                <td><span th:text="${colaborador.squad != null ? colaborador.squad.nome : 'Sem Squad'}"></span></td>
+            </tr>
+            
+            <tr th:if="${colaboradores == null or colaboradores.size() == 0}">
+                <td colspan="4">Ainda não Possui Colaboradores</td>
+            </tr>
+        </tbody>
+
+    </table>
+</body>
+</html>
