@@ -30,6 +30,7 @@
                     <th>Data Nascimento</th>
                     <th>Email</th>
                     <th>Squad</th>
+                    <th>Deletar</th>
                 </tr>
         </thead>
         <tbody>
@@ -38,6 +39,9 @@
                 <td><span th:text="${colaborador.dataNascimento}"></span></td>
                 <td><span th:text="${colaborador.email}"></span></td>
                 <td><span th:text="${colaborador.squad != null ? colaborador.squad.nome : 'Sem Squad'}"></span></td>
+                <!-- <td><a th:href="${(mvc.url('CC#deletarColaborador').arg(0, colaborador.email)).build()}">Remover</a></td> -->
+                <td><a th:href="@{/deletar(email=${colaborador.email})}">Remover</a></td>
+
             </tr>
             
             <tr th:if="${colaboradores == null or colaboradores.size() == 0}">

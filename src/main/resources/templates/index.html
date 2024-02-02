@@ -11,8 +11,6 @@
     <div>
         <a href="/cadastrarSquad">Cadastrar Squad</a>
         <p></p>
-        <a href="/cadastrarColaborador">Cadastrar Colaborador</a>
-        <p></p>
         <a href="/listarColaboradores">Ver Todos os Colaboradores</a>
     </body>
     </div>
@@ -26,6 +24,7 @@
                     <td>Descrição</td>
                     <td>Empresa</td>
                     <td>Colaboradores</td>
+                    <td>Deletar</td>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +33,7 @@
                     <td><span th:text="${squad.descricao}"></span></td>
                     <td><span th:text="${squad.empresa.nome}"></span></td>
                     <td><a th:href="@{/listarColaboradores(squadId=${squad.id})}"><span>Ver Colaboradores</span></a></td> <!-- 1aqui eu quero um botão que leva pra uma tela que mostra os colaboradores do respectivo squad -->
+                    <td><a th:href="@{/deletarSquad(id=${squad.id})}">Remover</a></td>
                 </tr>
             </tbody>
         </table>

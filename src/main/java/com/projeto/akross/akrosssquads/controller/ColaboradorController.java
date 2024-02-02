@@ -82,4 +82,22 @@ public class ColaboradorController {
         return mv;
     }
 
+    @RequestMapping("/deletar")
+    public String deletarColaborador(@RequestParam("email") String email){
+        Optional<Colaborador> colaboradorOpt = cr.findById(email);
+        cr.delete(colaboradorOpt.get());
+        return "redirect:/listarColaboradores";
+    }
+    // @GetMapping("/cadastrarColaborador")
+    // public String formColaborador(Model model, @RequestParam(required = false) Long squadId, HttpSession session) {
+    //     if (squadId != null) {
+    //         session.setAttribute("squadId", squadId);
+    //     }
+    //     Squad squad = sr.findById(squadId != null ? squadId : 0L);
+    //     model.addAttribute("squad", squad);
+
+    //     model.addAttribute("colaborador", new Colaborador());
+    //     return "colaboradores/cadastrarColaborador";
+    // }
+
 }

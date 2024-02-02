@@ -1,13 +1,17 @@
 package com.projeto.akross.akrosssquads.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.projeto.akross.akrosssquads.models.Colaborador;
 import com.projeto.akross.akrosssquads.models.Empresa;
 import com.projeto.akross.akrosssquads.models.Squad;
 import com.projeto.akross.akrosssquads.repository.EmpresaRepository;
@@ -66,6 +70,18 @@ public class SquadController {
         ModelAndView mv = new ModelAndView("colaboradores/listarColaboradores");
         mv.addObject("squad", squad);
         return mv;
+    }
+
+    @RequestMapping("/deletarSquad")
+    public String deletarSquad(@RequestParam("id") long id){
+        Squad squad = sr.findById(id);
+        if(squad.getColaboradores().size() > 0){
+            for (Colaborador colaborador : squad.getColaboradores()) {
+                colaborador.setSquad(null);
+            }
+        }
+        sr.delete(squad);
+        return "redirect:/squads";
     }
 
 }
